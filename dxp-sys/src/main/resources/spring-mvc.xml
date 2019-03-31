@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    
+    <!-- 引入配置文件 -->
+    <context:property-placeholder location="classpath:config.properties" />
+    
+    <!-- 进行springMvc必要配置 RequestMappingHandlerMapping 和 RequestMappingHandlerAdapter -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+    
+    <!-- 上传工具类 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="${env.defaultEncoding}" />
+        <property name="maxInMemorySize" value="${upload.maxMemSize}" />
+        <property name="maxUploadSize" value="${upload.maxFileSize}" />
+        <property name="uploadTempDir" value="${upload.tempDir}" />
+    </bean>
+    
+	<!-- spring view过滤  -->
+    <bean id="pageResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
+        <property name="order" value="1" />
+    </bean>
+    
+    <!-- spring 扫描所有dxp.sys.web下文件 -->
+    <context:component-scan base-package="dxp" />
+    
+</beans>

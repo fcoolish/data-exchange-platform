@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>dxp-sys</display-name>
+  <welcome-file-list>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>dxp-sys.root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>/WEB-INF/classes/log4j.properties</param-value>
+  </context-param>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:spring-context.xml</param-value>
+  </context-param>
+ 
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>dxp-sys</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+     	<param-name>contextConfigLocation</param-name>
+     	<param-value>classpath:spring-mvc.xml</param-value>
+   	</init-param>    
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>dxp-sys</servlet-name>
+      <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>dxp-sys</servlet-name>
+      <url-pattern>*.json</url-pattern>
+  </servlet-mapping> 
+ 
+  <filter>
+      <filter-name>GzipFilter</filter-name>
+      <filter-class>dxp.com.util.GzipFilter</filter-class>
+      <init-param>
+          <param-name>headers</param-name>
+          <param-value>Content-Encoding=gzip</param-value>
+      </init-param>
+  </filter>
+  <filter-mapping>
+      <filter-name>GzipFilter</filter-name>
+      <url-pattern>*.gzjs</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+      <filter-name>GzipFilter</filter-name>
+      <url-pattern>*.gzcss</url-pattern>
+  </filter-mapping>
+     
+ <session-config>
+   <session-timeout>15</session-timeout>
+ </session-config>
+	<!-- ======================== 单点登录开始 ======================== -->  
+  	<!-- 用于单点退出，该过滤器用于实现单点登出功能，可选配置-->  
+	<listener>  
+	    <listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>  
+	</listener>  
+	<!-- 该过滤器用于实现单点登出功能，可选配置。 -->  
+	<filter>  
+	    <filter-name>CAS Single Sign Out Filter</filter-name>  
+	    <filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>  
+	</filter>  
+	<filter-mapping>  
+	    <filter-name>CAS Single Sign Out Filter</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping>  
+	<!-- 该过滤器负责用户的认证工作，必须启用它 -->  
+	<filter>  
+	    <filter-name>CASFilter</filter-name>  
+	    <filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>  
+	    <init-param>  
+	        <param-name>casServerLoginUrl</param-name>  
+	        <!--这里为CAS服务器的地址，必须使用所创建的域名，不然验证证书不通过 -->
+	        <param-value>https://www.dxp.com:8443/cas/login</param-value>
+	    </init-param>  
+	    <init-param>  
+	        <param-name>serverName</param-name> 
+	        <!--这里的server是服务端的IP-->   
+	        <param-value>http://192.168.1.183:8080</param-value>  
+	    </init-param>  
+	</filter>  
+	<filter-mapping>  
+	    <filter-name>CASFilter</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping>  
+	<!-- 该过滤器负责对Ticket的校验工作，必须启用它 -->  
+	<filter>  
+	    <filter-name>CAS Validation Filter</filter-name>  
+	    <filter-class>  
+	        org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter</filter-class>  
+	    <init-param>  
+	        <param-name>casServerUrlPrefix</param-name>  
+	        <!--这里为CAS服务器的地址，必须使用所创建的域名，不然验证证书不通过 -->
+	        <param-value>https://www.dxp.com:8443/cas</param-value>
+	    </init-param>  
+	    <init-param>  
+	        <param-name>serverName</param-name>  
+	        <param-value>http://192.168.1.183:8080</param-value>  
+	    </init-param>  
+	</filter>  
+	<filter-mapping>  
+	    <filter-name>CAS Validation Filter</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping>  
+	<!--  
+	    该过滤器负责实现HttpServletRequest请求的包裹，  
+	    比如允许开发者通过HttpServletRequest的getRemoteUser()方法获得SSO登录用户的登录名，可选配置。  
+	-->  
+	<filter>  
+	    <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>  
+	    <filter-class>  
+	        org.jasig.cas.client.util.HttpServletRequestWrapperFilter</filter-class>  
+	</filter>  
+	<filter-mapping>  
+	    <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping>  
+	<!--  
+	    该过滤器使得开发者可以通过org.jasig.cas.client.util.AssertionHolder来获取用户的登录名。  
+	    比如AssertionHolder.getAssertion().getPrincipal().getName()。  
+	-->  
+	<filter>  
+	    <filter-name>CAS Assertion Thread Local Filter</filter-name>  
+	    <filter-class>org.jasig.cas.client.util.AssertionThreadLocalFilter</filter-class>  
+	</filter>  
+	<filter-mapping>  
+	    <filter-name>CAS Assertion Thread Local Filter</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping>   
+	<!-- ======================== 单点登录结束 ======================== -->  
+	<!-- 自动根据单点登录的结果设置本系统的用户信息 -->     
+
+    <filter>
+        <filter-name>authValidateFilter</filter-name>
+        <filter-class>dxp.com.util.AuthValidateFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authValidateFilter</filter-name>
+        <servlet-name>dxp-sys</servlet-name>
+    </filter-mapping>	
+
+</web-app>

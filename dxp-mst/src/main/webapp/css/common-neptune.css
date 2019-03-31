@@ -1,0 +1,362 @@
+@CHARSET "UTF-8";
+
+.topbg {
+    background-color: #808080;
+}
+
+.btn-base {
+    
+}
+
+.btn-over {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.backclear {
+    background-color: transparent;
+}
+
+.body {
+    background-image: url(../images/square.gif);
+}
+
+.user {
+    background-image: url(../images/icons/user.png);
+}
+
+.group {
+    background-image: url(../images/icons/group.png);
+}
+
+.home {
+    background-image: url(../images/icons/home.png);
+}
+
+.start {
+    background-image: url(../images/icons/start.png);
+}
+
+.key {
+    background-image: url(../images/icons/key.png);
+}
+
+.exit {
+    background-image: url(../images/icons/exit.png);
+}
+
+.config {
+    background-image: url(../images/icons/config.png);
+}
+
+.func {
+    background-image: url(../images/icons/func.png);
+}
+
+.query {
+    background-image: url(../images/icons/query.png);
+}
+
+.find {
+    background-image: url(../images/icons/find.png);
+}
+
+.filter {
+    background-image: url(../images/icons/filter.png);
+}
+
+.copy {
+    background-image: url(../images/icons/copy.png);
+}
+
+.edit {
+    background-image: url(../images/icons/edit.png);
+}
+
+.save {
+    background-image: url(../images/icons/save.png);
+}
+
+.add {
+    background-image: url(../images/icons/add.png);
+}
+
+.remove {
+    background-image: url(../images/icons/remove.png);
+}
+
+.delete {
+    background-image: url(../images/icons/delete.png);
+}
+
+.cancel {
+    background-image: url(../images/icons/cancel.png);
+}
+
+.clear {
+    background-image: url(../images/icons/clear.png);
+}
+
+.recycle {
+    background-image: url(../images/icons/recycle.png);
+}
+
+.active {
+    background-image: url(../images/icons/active.png);
+}
+
+.table {
+    background-image: url(../images/icons/table.png);
+}
+
+.import {
+    background-image: url(../images/icons/import.png);
+}
+
+.export {
+    background-image: url(../images/icons/export.png);
+}
+
+.change {
+    background-image: url(../images/icons/change.png);
+}
+
+.count {
+    background-image: url(../images/icons/count.png);
+}
+
+.percent {
+    background-image: url(../images/icons/percent.png);
+}
+
+.download {
+    background-image: url(../images/icons/download.png);
+}
+
+.refresh {
+    background-image: url(../images/icons/refresh.png);
+}
+
+.print {
+    background-image: url(../images/icons/print.png);
+}
+
+.archives {
+    background-image: url(../images/icons/archives.png);
+}
+
+.archive_add {
+    background-image: url(../images/icons/archive_add.png);
+}
+
+.archive_del {
+    background-image: url(../images/icons/archive_del.png);
+}
+
+.right {
+    background-image: url(../images/icons/right.png);
+}
+
+.back {
+    background-image: url(../images/icons/back.png);
+}
+
+.run {
+    background-image: url(../images/icons/run.png);
+}
+
+.submit {
+    background-image: url(../images/icons/submit.png);
+}
+
+.upload {
+    background-image: url(../images/icons/upload.png);
+}
+
+.empty {
+    background-image: url(../images/icons/empty.png);
+}
+
+.emptyRed {
+    background-image: url(../images/icons/emptyRed.png);
+}
+
+.wait {
+    background-image: url(../images/icons/wait.png);
+}
+
+.warn {
+    background-image: url(../images/icons/warn.png);
+}
+
+.problem {
+    background-image: url(../images/icons/problem.png);
+}
+
+.error {
+    background-image: url(../images/icons/error.png);
+}
+
+.line {
+    background-image: url(../images/icons/line.png);
+}
+
+.curve {
+    background-image: url(../images/icons/curve.png);
+}
+
+.bar {
+    background-image: url(../images/icons/bar.png);
+}
+
+.pie {
+    background-image: url(../images/icons/pie.png);
+}
+
+.pics {
+    background-image: url(../images/icons/pics.png);
+}
+
+.video {
+    background-image: url(../images/icons/video.png);
+}
+
+.map {
+    background-image: url(../images/icons/map.png);
+}
+
+.calendar {
+    background-image: url(../images/icons/calendar.png);
+}
+
+.report {
+    background-image: url(../images/icons/report.png);
+}
+
+.html {
+    background-image: url(../images/icons/html.png);
+}
+
+.xls {
+    background-image: url(../images/icons/xls.png);
+}
+
+.pdf {
+    background-image: url(../images/icons/pdf.png);
+}
+
+.zip {
+    background-image: url(../images/icons/zip.png);
+}
+
+.js {
+    background-image: url(../images/icons/js.png);
+}
+
+.mail {
+    background-image: url(../images/icons/mail.png);
+}
+
+.sms {
+    background-image: url(../images/icons/sms.png);
+}
+
+.vehicle {
+    background-image: url(../images/icons/vehicle.png);
+}
+
+.message {
+    background-image: url(../images/icons/message.png);
+}
+
+.monitor {
+    background-image: url(../images/icons/monitor.png);
+}
+
+.camera {
+    background-image: url(../images/icons/camera.png);
+}
+
+.webcam {
+    background-image: url(../images/icons/webcam.png);
+}
+
+.keyboard {
+    background-image: url(../images/icons/keyboard.png);
+}
+
+.mouse {
+    background-image: url(../images/icons/mouse.png);
+}
+
+.power {
+    background-image: url(../images/icons/power.png);
+}
+
+.server {
+    background-image: url(../images/icons/server.png);
+}
+
+.network {
+    background-image: url(../images/icons/network.png);
+}
+
+.switch {
+    background-image: url(../images/icons/switch.png);
+}
+
+.screen {
+    background-image: url(../images/icons/screen.png);
+}
+
+.computer {
+    background-image: url(../images/icons/computer.png);
+}
+
+.notebook {
+    background-image: url(../images/icons/notebook.png);
+}
+
+.mobile {
+    background-image: url(../images/icons/mobile.png);
+}
+
+.pad {
+    background-image: url(../images/icons/pad.png);
+}
+
+.tel {
+    background-image: url(../images/icons/tel.png);
+}
+
+.up {
+    background-image: url(../images/icons/up.png);
+}
+
+.down {
+    background-image: url(../images/icons/down.png);
+}
+
+.top {
+    background-image: url(../images/icons/top.png);
+}
+
+.bottom {
+    background-image: url(../images/icons/bottom.png);
+}
+
+.ie {
+    background-image: url(../images/icons/ie.png);
+}
+
+.chrome {
+    background-image: url(../images/icons/chrome.png);
+}
+
+.firefox {
+    background-image: url(../images/icons/firefox.png);
+}
+
+.safari {
+    background-image: url(../images/icons/safari.png);
+}

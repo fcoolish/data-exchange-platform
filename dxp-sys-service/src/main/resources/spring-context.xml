@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 引入配置文件  -->
+	<context:property-placeholder location="classpath:config.properties" />
+	
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+        <property name="driver" value="${jdbc.driver}" />
+        <property name="driverUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="minimumConnectionCount" value="${jdbc.minConnection}" />
+        <property name="maximumConnectionCount" value="${jdbc.maxConnection}" />
+        <property name="maximumConnectionLifetime" value="${jdbc.maxConnectionLife}" />
+        <property name="maximumActiveTime" value="${jdbc.maxActiveTime}" />
+        <property name="prototypeCount" value="${jdbc.prototypeCount}" />
+        <property name="houseKeepingTestSql" value="${jdbc.testSql}" />
+    </bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 注解方式配置事物 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- 注解解析 -->
+	<context:annotation-config />
+	
+	<!-- 扫描所有spring bean注解 -->
+    <context:component-scan base-package="dxp" />
+	
+	<!-- 动态代理 -->
+	<aop:aspectj-autoproxy/>
+	
+	<!-- 配置dubbo服务 -->
+	<import resource="classpath:dubbo-provider.xml" />
+	
+	
+</beans>

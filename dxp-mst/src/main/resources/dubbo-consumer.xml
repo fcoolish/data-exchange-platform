@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+    <!-- 引入配置文件 -->
+    <context:property-placeholder location="classpath:config.properties" />
+
+	<!-- 消费服务名称 -->
+    <dubbo:application name="${dubbox.application}" owner="programmer" organization="dubbox"/>
+
+	<!-- zookeeper注册中心  zookeeper://192.168.1.111:2181 -->
+    <dubbo:registry timeout="${dubbox.timeout}" address="${dubbox.registry.address}"/>
+    
+    <!-- 扫描dubbox注解位置 -->
+    <dubbo:annotation package="dxp" />
+    
+    <!-- kryo实现序列化  -->
+    <dubbo:protocol name="dubbo" port="${dubbox.port}" serialization="kryo" optimizer="dxp.mst.serial.SerializationOptimizerImpl" />
+
+	<!-- 生成远程服务接口配置 -->
+	<dubbo:reference interface="dxp.mst.facade.MstSiteFacade" id="mstSiteFacade" />
+	
+</beans>
