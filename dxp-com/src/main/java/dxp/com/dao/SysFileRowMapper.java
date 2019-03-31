@@ -14,7 +14,7 @@ import dxp.com.entity.SysFile;
  * <B>中文类名：</B>系统文件行映射器<BR>
  * <B>概要说明：</B><BR>
  * @author dxp（Alienware）
- * @since 2016年5月23日
+ * @since 2019年5月23日
  */
 public class SysFileRowMapper implements RowMapper<SysFile> {
 
